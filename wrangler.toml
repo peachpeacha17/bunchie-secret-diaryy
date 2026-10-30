@@ -1,0 +1,7 @@
+name = "bunchie-secret-diary"
+compatibility_date = "2026-10-29"
+pages_build_output_dir = "./public"
+[[d1_databases]]
+binding = "DB"
+database_name = "bunchie-secret-diary"
+database_id = "eb33b1cf-7542-4fdf-b832-5487dbb90741"
