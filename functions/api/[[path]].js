@@ -1,6 +1,6 @@
 const out=(data,status=200,headers={})=>Response.json(data,{status,headers:{'cache-control':'no-store',...headers}});
 const hash=async s=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s)))).map(x=>x.toString(16).padStart(2,'0')).join('');
-async function pass(p,s){const k=await crypto.subtle.importKey('raw',new TextEncoder().encode(p),'PBKDF2',false,['deriveBits']);return Array.from(new Uint8Array(await crypto.subtle.deriveBits({name:'PBKDF2',salt:new TextEncoder().encode(s),iterations:210000,hash:'SHA-256'},k,256))).map(x=>x.toString(16).padStart(2,'0')).join('')}
+async function pass(p,s){const k=await crypto.subtle.importKey('raw',new TextEncoder().encode(p),'PBKDF2',false,['deriveBits']);return Array.from(new Uint8Array(await crypto.subtle.deriveBits({name:'PBKDF2',salt:new TextEncoder().encode(s),iterations:100000,hash:'SHA-256'},k,256))).map(x=>x.toString(16).padStart(2,'0')).join('')}
 const ck=(t,age)=>`bunchie_session=${t}; HttpOnly; Secure; SameSite=Lax; Path=/; Max-Age=${age}`;
 const clean=(v,n=5000)=>String(v??'').trim().slice(0,n);
 const link=v=>{try{const u=new URL(v);return ['http:','https:'].includes(u.protocol)?u.href:''}catch{return ''}};
